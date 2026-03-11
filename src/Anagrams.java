@@ -75,7 +75,7 @@ public class Anagrams {
                 ArrayList<String> words = entry.getValue();
                 if (words.size() > 1) {
                     String wordList = String.join(", ", words);
-                    writer.println("{" + entry.getKey() + "} → " + words + " \\\\");
+                    writer.println("Signature: {" + entry.getKey() + "} - " + words + " \\\\");
                 }
             }
 
