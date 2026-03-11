@@ -1,3 +1,6 @@
+// 4502894
+// Maxwell Kei Farouk
+// Anagrams
 
 import java.util.*;
 import java.nio.file.Files;
