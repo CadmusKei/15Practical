@@ -71,7 +71,6 @@ public class Anagrams {
         try (PrintWriter writer = new PrintWriter(new FileWriter(outputFile))) {
 
             for (Map.Entry<String, ArrayList<String>> entry : anagrams.entrySet()) {
-                String sig = entry.getKey();
                 ArrayList<String> words = entry.getValue();
                 if (words.size() > 1) {
                     String wordList = String.join(", ", words);
