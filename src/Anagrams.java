@@ -16,7 +16,8 @@ public class Anagrams {
 
     }
 
-    public static ArrayList<String> readBook(String filename)  throws IOException {
+    // Read the file into an ArrayList
+    private static ArrayList<String> readBook(String filename)  throws IOException {
         if (filename.isEmpty()) return new ArrayList<>();
         Path path = Path.of(filename);
         ArrayList<String> wordArray = new ArrayList<>();
@@ -31,7 +32,20 @@ public class Anagrams {
         return (wordArray);
     }
 
+    // Helper Method for Hashing
+    private static String signature(String word) {
+        char[] letters = word.toCharArray();
+        Arrays.sort(letters);
+        return new String(letters);
+    }
 
+    private static HashMap<String, ArrayList<String>> generateAnagram (ArrayList<String> words) {
+
+        for (String word : words) {
+            
+        }
+
+    }
 
 
 
