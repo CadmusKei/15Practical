@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.nio.file.Files;
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.Map;
 import java.util.stream.Stream;
 
 public class Anagrams {
@@ -12,9 +13,7 @@ public class Anagrams {
 
         ArrayList<String> words = readBook("joyce1922_ulysses-1.text");
         HashMap<String, ArrayList<String>> anagrams = generateAnagram(words);
-
-        System.out.println(anagrams);
-
+        readAnagrams(anagrams);
     }
 
     // Read the file into an ArrayList
@@ -48,6 +47,7 @@ public class Anagrams {
             String sig = signature(word);
 
             ArrayList<String> anagramWords = anagrams.get(sig);
+            // AnagramWords is the Words related to this specific signature (because of for loop. )
             if (anagramWords == null) {
                 anagramWords = new ArrayList<>();
                 anagrams.put(sig, anagramWords);
@@ -60,9 +60,11 @@ public class Anagrams {
         return anagrams;
     }
 
-
-
-
+    private static void readAnagrams(HashMap<String, ArrayList<String>> anagrams) {
+        for (Map.Entry<String, ArrayList<String>> entry : anagrams.entrySet()) {
+            System.out.println("Signature: " + entry.getKey() + ", Anagrams: " + entry.getValue());
+        }
+    }
 
 
 }
