@@ -34,15 +34,15 @@ public class Anagrams {
 
     // Helper Method for Hashing
     private static String signature(String word) {
+        if (word.isEmpty()) return "";
         char[] letters = word.toCharArray();
         Arrays.sort(letters);
         return new String(letters);
     }
 
     private static HashMap<String, ArrayList<String>> generateAnagram(ArrayList<String> words) {
-
+        if (words.isEmpty()) return new HashMap<>();
         HashMap<String, ArrayList<String>> anagrams = new HashMap<>();
-
         for (String word : words) {
             String sig = signature(word);
 
@@ -61,6 +61,7 @@ public class Anagrams {
     }
 
     private static void readAnagrams(HashMap<String, ArrayList<String>> anagrams) {
+        if (anagrams.isEmpty()) return;
         for (Map.Entry<String, ArrayList<String>> entry : anagrams.entrySet()) {
             System.out.println("Signature: " + entry.getKey() + ", Anagrams: " + entry.getValue());
         }
