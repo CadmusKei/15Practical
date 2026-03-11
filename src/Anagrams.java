@@ -41,9 +41,25 @@ public class Anagrams {
 
     private static HashMap<String, ArrayList<String>> generateAnagram (ArrayList<String> words) {
 
+        HashMap<String, ArrayList<String>> anagrams = new HashMap<>();
+
         for (String word : words) {
-            
+            String sig = signature(word);
+
+            ArrayList<String> anagramWords = anagrams.get(sig);
+            if (anagramWords == null) {
+                ArrayList<String> anagramWords = new ArrayList<>();
+                anagrams.put(sig, anagramWords);
+            }
+
+            if (!anagramWords.contains(word)) {
+                anagramWords.add(word);
+            }
+
+            return anagrams;
+
         }
+
 
     }
 
