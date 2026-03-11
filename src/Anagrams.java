@@ -10,9 +10,10 @@ import java.util.stream.Stream;
 public class Anagrams {
     public static void main(String[] args) throws IOException {
 
-        HashMap<String, ArrayList<String>> anagrams = new HashMap<>();
         ArrayList<String> words = readBook("joyce1922_ulysses-1.text");
-        System.out.println(words);
+        HashMap<String, ArrayList<String>> anagrams = generateAnagram(words);
+
+        System.out.println(anagrams);
 
     }
 
@@ -39,7 +40,7 @@ public class Anagrams {
         return new String(letters);
     }
 
-    private static HashMap<String, ArrayList<String>> generateAnagram (ArrayList<String> words) {
+    private static HashMap<String, ArrayList<String>> generateAnagram(ArrayList<String> words) {
 
         HashMap<String, ArrayList<String>> anagrams = new HashMap<>();
 
@@ -48,19 +49,15 @@ public class Anagrams {
 
             ArrayList<String> anagramWords = anagrams.get(sig);
             if (anagramWords == null) {
-                ArrayList<String> anagramWords = new ArrayList<>();
+                anagramWords = new ArrayList<>();
                 anagrams.put(sig, anagramWords);
             }
 
             if (!anagramWords.contains(word)) {
                 anagramWords.add(word);
             }
-
-            return anagrams;
-
         }
-
-
+        return anagrams;
     }
 
 
