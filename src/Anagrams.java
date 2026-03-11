@@ -1,12 +1,10 @@
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.ArrayList;
+import java.util.*;
 import java.nio.file.Files;
-import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Map;
 import java.util.stream.Stream;
+import java.io.*;
 
 public class Anagrams {
     public static void main(String[] args) throws IOException {
@@ -14,6 +12,7 @@ public class Anagrams {
         ArrayList<String> words = readBook("joyce1922_ulysses-1.text");
         HashMap<String, ArrayList<String>> anagrams = generateAnagram(words);
         readAnagrams(anagrams);
+        writeAnagrams(anagrams, "theAnagrams.tex");
     }
 
     // Read the file into an ArrayList
@@ -25,7 +24,8 @@ public class Anagrams {
             lines.forEach(line -> {
                 String[] words = line.split("\\s");
                 for (String word : words) {
-                    wordArray.add(word);
+                    String cleaned = word.replaceAll("[^a-zA-Z']", "").toLowerCase();
+                    wordArray.add(cleaned);
                 }
             });
         }
@@ -67,5 +67,21 @@ public class Anagrams {
         }
     }
 
+    public static void writeAnagrams(HashMap<String, ArrayList<String>> anagrams, String outputFile) {
+        try (PrintWriter writer = new PrintWriter(new FileWriter(outputFile))) {
+
+            for (Map.Entry<String, ArrayList<String>> entry : anagrams.entrySet()) {
+                String sig = entry.getKey();
+                ArrayList<String> words = entry.getValue();
+                if (words.size() > 1) {
+                    String wordList = String.join(", ", words);
+                    writer.println("{" + entry.getKey() + "} → " + words + " \\\\");
+                }
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 }
